@@ -1,3 +1,6 @@
+using TAKI.adi.Models;
+using Microsoft.EntityFrameworkCore;
+
 namespace TAKI.adi
 {
     public class Program
@@ -6,8 +9,12 @@ namespace TAKI.adi
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            // Add Razor Pages
+            builder.Services.AddRazorPages();
+
+            // Register AppDbContext with DI
+            builder.Services.AddDbContext<AppDbContext>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("AppDbContext")));
 
             var app = builder.Build();
 
@@ -15,7 +22,6 @@ namespace TAKI.adi
             if (!app.Environment.IsDevelopment())
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
@@ -24,11 +30,7 @@ namespace TAKI.adi
 
             app.UseAuthorization();
 
-            app.MapStaticAssets();
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}")
-                .WithStaticAssets();
+            app.MapRazorPages();
 
             app.Run();
         }

@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
+
+
 
 namespace TAKI.adi.Models
 {
@@ -10,6 +11,7 @@ namespace TAKI.adi.Models
         {
         }
 
-        public DbSet<Students> Students { get; set; }
+        // DbSets go here, e.g.:
+         public DbSet<Students> Students { get; set; }
     }
 }
