@@ -13,5 +13,16 @@ namespace TAKI.adi.Models
 
         // DbSets go here, e.g.:
          public DbSet<Students> Students { get; set; }
+         public DbSet<teacher> teacher { get; set; }
+         public DbSet<subject> subject { get; set; }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Students>()
+                .HasOne(s => s.Subject)
+                .WithMany(s => s.Students)
+                .HasForeignKey(s => s.SubjectId);
+
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }
