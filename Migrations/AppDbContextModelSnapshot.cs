@@ -43,17 +43,12 @@ namespace TAKI.adi.Migrations
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("subjectId")
-                        .HasColumnType("int");
-
                     b.Property<int?>("teacherId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("SubjectId");
-
-                    b.HasIndex("subjectId");
 
                     b.HasIndex("teacherId");
 
@@ -87,29 +82,6 @@ namespace TAKI.adi.Migrations
                     b.ToTable("Subject");
                 });
 
-            modelBuilder.Entity("TAKI.adi.Models.subject", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<bool>("bagrut")
-                        .HasColumnType("bit");
-
-                    b.Property<int>("points")
-                        .HasColumnType("int");
-
-                    b.Property<string>("teacher")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("subject");
-                });
-
             modelBuilder.Entity("TAKI.adi.Models.teacher", b =>
                 {
                     b.Property<int>("Id")
@@ -141,10 +113,6 @@ namespace TAKI.adi.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TAKI.adi.Models.subject", null)
-                        .WithMany("Students")
-                        .HasForeignKey("subjectId");
-
                     b.HasOne("TAKI.adi.Models.teacher", null)
                         .WithMany("Students")
                         .HasForeignKey("teacherId");
@@ -153,11 +121,6 @@ namespace TAKI.adi.Migrations
                 });
 
             modelBuilder.Entity("TAKI.adi.Models.Subject", b =>
-                {
-                    b.Navigation("Students");
-                });
-
-            modelBuilder.Entity("TAKI.adi.Models.subject", b =>
                 {
                     b.Navigation("Students");
                 });
