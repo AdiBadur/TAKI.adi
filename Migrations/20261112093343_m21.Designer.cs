@@ -11,8 +11,8 @@ using TAKI.adi.Models;
 namespace TAKI.adi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261111195545_m6")]
-    partial class m6
+    [Migration("20261112093343_m21")]
+    partial class m21
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,19 +70,17 @@ namespace TAKI.adi.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Points")
                         .HasColumnType("int");
 
                     b.Property<string>("Teacher")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Subject");
+                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("TAKI.adi.Models.teacher", b =>

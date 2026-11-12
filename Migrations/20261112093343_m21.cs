@@ -5,7 +5,7 @@
 namespace TAKI.adi.Migrations
 {
     /// <inheritdoc />
-    public partial class m1 : Migration
+    public partial class m21 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

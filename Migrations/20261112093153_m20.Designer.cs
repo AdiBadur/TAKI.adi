@@ -11,8 +11,8 @@ using TAKI.adi.Models;
 namespace TAKI.adi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261101140951_c5")]
-    partial class c5
+    [Migration("20261112093153_m20")]
+    partial class m20
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -46,7 +46,7 @@ namespace TAKI.adi.Migrations
                     b.Property<int>("SubjectId")
                         .HasColumnType("int");
 
-                    b.Property<int>("teacherId")
+                    b.Property<int?>("teacherId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -58,7 +58,7 @@ namespace TAKI.adi.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("TAKI.adi.Models.subject", b =>
+            modelBuilder.Entity("TAKI.adi.Models.Subject", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -66,19 +66,21 @@ namespace TAKI.adi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<bool>("bagrut")
+                    b.Property<bool>("Bagrut")
                         .HasColumnType("bit");
 
-                    b.Property<int>("points")
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Points")
                         .HasColumnType("int");
 
-                    b.Property<string>("teacher")
-                        .IsRequired()
+                    b.Property<string>("Teacher")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("subject");
+                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("TAKI.adi.Models.teacher", b =>
@@ -106,24 +108,20 @@ namespace TAKI.adi.Migrations
 
             modelBuilder.Entity("TAKI.adi.Models.Students", b =>
                 {
-                    b.HasOne("TAKI.adi.Models.subject", "Subject")
+                    b.HasOne("TAKI.adi.Models.Subject", "Subject")
                         .WithMany("Students")
                         .HasForeignKey("SubjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("TAKI.adi.Models.teacher", "teacher")
+                    b.HasOne("TAKI.adi.Models.teacher", null)
                         .WithMany("Students")
-                        .HasForeignKey("teacherId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("teacherId");
 
                     b.Navigation("Subject");
-
-                    b.Navigation("teacher");
                 });
 
-            modelBuilder.Entity("TAKI.adi.Models.subject", b =>
+            modelBuilder.Entity("TAKI.adi.Models.Subject", b =>
                 {
                     b.Navigation("Students");
                 });
