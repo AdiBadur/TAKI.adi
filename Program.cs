@@ -5,6 +5,7 @@ namespace TAKI.adi
 {
     public class Program
     {
+        
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -31,6 +32,10 @@ namespace TAKI.adi
             app.UseAuthorization();
 
             app.MapRazorPages();
+
+            app.MapControllerRoute(
+            name: "default",
+            pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }
