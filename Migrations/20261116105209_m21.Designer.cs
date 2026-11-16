@@ -11,7 +11,7 @@ using TAKI.adi.Models;
 namespace TAKI.adi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261112093343_m21")]
+    [Migration("20261116105209_m21")]
     partial class m21
     {
         /// <inheritdoc />
@@ -95,8 +95,9 @@ namespace TAKI.adi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("name")
-                        .HasColumnType("int");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("roomNumber")
                         .HasColumnType("int");

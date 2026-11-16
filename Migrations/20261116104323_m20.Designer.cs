@@ -11,7 +11,7 @@ using TAKI.adi.Models;
 namespace TAKI.adi.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20261112093153_m20")]
+    [Migration("20261116104323_m20")]
     partial class m20
     {
         /// <inheritdoc />

@@ -92,8 +92,9 @@ namespace TAKI.adi.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("name")
-                        .HasColumnType("int");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("roomNumber")
                         .HasColumnType("int");
